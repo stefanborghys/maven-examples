@@ -8,7 +8,7 @@
     <artifactId>maven-resources-plugin-examples</artifactId>
     <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
-    <name>maven-resources-plugin-examples</name>
+    <name>Maven Resources Plugin Examples</name>
 
     <modules>
         <module>with-resources</module>

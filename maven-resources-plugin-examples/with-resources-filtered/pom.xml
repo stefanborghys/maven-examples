@@ -11,7 +11,7 @@
 
     <artifactId>with-resources-filtered</artifactId>
 
-    <name>with-resources-filtered</name>
+    <name>With Resources Filtered</name>
 
     <build>
         <filters>

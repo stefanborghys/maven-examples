@@ -10,6 +10,6 @@
     </parent>
 
     <artifactId>with-resources</artifactId>
-    <name>with-resources</name>
+    <name>With Resources</name>
 
 </project>
