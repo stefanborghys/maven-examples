@@ -15,7 +15,7 @@ And to create an archetype from an existing project.
 
 Website: [maven.apache.org/archetype/maven-archetype-plugin](https://maven.apache.org/archetype/maven-archetype-plugin)
 
-## Maven Archetypes
+## 🔖 Maven Archetypes
 
 Archetype is a Maven project templating toolkit.
 

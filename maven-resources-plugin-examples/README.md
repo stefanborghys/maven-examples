@@ -6,10 +6,10 @@ There are two different kinds of resources: **main** and **test resources**.
 - main resources : resources associated to the main source code, mostly stored in `src/main/resources`
 - test resources : resources associated to the test source code, mostly stored in `src/test/resources`
 
-Website: [https://maven.apache.org/plugins/maven-resources-plugin](https://maven.apache.org/plugins/maven-resources-plugin)  
-Maven repository: [https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-resources-plugin](https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-resources-plugin)
+Website: [maven.apache.org/plugins/maven-resources-plugin](https://maven.apache.org/plugins/maven-resources-plugin)  
+Maven repository: [mvnrepository.com/artifact/org.apache.maven.plugins/maven-resources-plugin](https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-resources-plugin)
 
-Goals: [https://maven.apache.org/plugins/maven-resources-plugin/plugin-info.html](https://maven.apache.org/plugins/maven-resources-plugin/plugin-info.html)
+Goals: [maven.apache.org/plugins/maven-resources-plugin/plugin-info.html](https://maven.apache.org/plugins/maven-resources-plugin/plugin-info.html)
 
 ## Usage
 
@@ -64,7 +64,7 @@ Following configuration needs to be added to get this done:
 
 Note that it's recommended to create a separate folder for filtered resources if the default resources folder contains binary content!
 
-source: [https://maven.apache.org/plugins/maven-resources-plugin/examples/filter.html](https://maven.apache.org/plugins/maven-resources-plugin/examples/filter.html)
+source: [maven.apache.org/plugins/maven-resources-plugin/examples/filter.html](https://maven.apache.org/plugins/maven-resources-plugin/examples/filter.html)
 
 ### Filtering from a properties file
 
@@ -87,4 +87,4 @@ One or multiple 'filter's' can be added. Each including the location of where th
 ...
 ```
 
-source: [https://maven.apache.org/plugins/maven-resources-plugin/examples/filtering-properties-files.html](https://maven.apache.org/plugins/maven-resources-plugin/examples/filtering-properties-files.html)
+source: [maven.apache.org/plugins/maven-resources-plugin/examples/filtering-properties-files.html](https://maven.apache.org/plugins/maven-resources-plugin/examples/filtering-properties-files.html)
