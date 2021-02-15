@@ -1,4 +1,4 @@
-# maven-resources-plugin examples
+# maven-resources-plugin Examples
 
 The `maven-resources-plugin` handles copying of project resources to the output directory.  
 There are two different kinds of resources: **main** and **test resources**.

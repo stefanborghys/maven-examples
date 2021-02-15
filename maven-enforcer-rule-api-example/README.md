@@ -1,4 +1,4 @@
-# maven-enforcer-rule-api
+# maven-enforcer-rule-api Example
 
 The enforcer rule api allows to implement a custom enforcer rule which can be invoked with the [maven-enforcer-plugin](https://maven.apache.org/enforcer/maven-enforcer-plugin).
 

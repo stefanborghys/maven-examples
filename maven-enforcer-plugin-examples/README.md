@@ -1,4 +1,4 @@
-# maven-enforcer-plugin examples
+# maven-enforcer-plugin Examples
 
 Provides goals to control certain environmental constraints such as Maven version,
 JDK version and OS family along with many more built-in rules and user created rules.
