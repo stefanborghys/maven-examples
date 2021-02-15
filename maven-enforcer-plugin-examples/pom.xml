@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>be.seriousbusiness.maven-enforcer-plugin-examples</groupId>
+    <artifactId>maven-enforcer-plugin-examples</artifactId>
+    <packaging>pom</packaging>
+    <version>1.0-SNAPSHOT</version>
+    <modules>
+        <module>duplicate-dependencies</module>
+    </modules>
+    <name>Maven Enforcer Plugin Examples</name>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.release>11</maven.compiler.release>
+        <!-- dependencies -->
+        <be.seriousbusiness.maven-enforcer-rule-api-example.version>1.0-SNAPSHOT
+        </be.seriousbusiness.maven-enforcer-rule-api-example.version>
+        <!-- plugins -->
+        <org.apache.maven.plugins.maven-enforcer-plugin.version>3.0.0-M3</org.apache.maven.plugins.maven-enforcer-plugin.version>
+        <org.apache.maven.plugins.maven-compiler-plugin.version>3.8.1</org.apache.maven.plugins.maven-compiler-plugin.version>
+        <!-- Rule: RequirePluginVersions - requires an explicit version for maven's default plugins  -->
+        <org.apache.maven.plugins.maven-surefire-plugin.version>3.0.0-M5</org.apache.maven.plugins.maven-surefire-plugin.version>
+        <org.apache.maven.plugins.maven-jar-plugin.version>3.2.0</org.apache.maven.plugins.maven-jar-plugin.version>
+        <org.apache.maven.plugins.maven-clean-plugin.version>3.1.0</org.apache.maven.plugins.maven-clean-plugin.version>
+        <org.apache.maven.plugins.maven-install-plugin.version>3.0.0-M1</org.apache.maven.plugins.maven-install-plugin.version>
+        <org.apache.maven.plugins.maven-site-plugin.version>3.9.1</org.apache.maven.plugins.maven-site-plugin.version>
+        <org.apache.maven.plugins.maven-resources-plugin.version>3.2.0</org.apache.maven.plugins.maven-resources-plugin.version>
+        <org.apache.maven.plugins.maven-deploy-plugin.version>3.0.0-M1</org.apache.maven.plugins.maven-deploy-plugin.version>
+    </properties>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-enforcer-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+            </plugin>
+        </plugins>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-enforcer-plugin</artifactId>
+                    <version>${org.apache.maven.plugins.maven-enforcer-plugin.version}</version>
+                    <dependencies>
+                        <dependency>
+                            <groupId>be.seriousbusiness.maven-enforcer-rule-api-example</groupId>
+                            <artifactId>maven-enforcer-rule-api-example</artifactId>
+                            <version>${be.seriousbusiness.maven-enforcer-rule-api-example.version}</version>
+                        </dependency>
+                    </dependencies>
+                    <executions>
+                        <execution>
+                            <id>enfore</id>
+                            <goals>
+                                <goal>enforce</goal>
+                            </goals>
+                            <configuration>
+                                <rules>
+                                    <!-- enforces no duplicate declared dependencies -->
+                                    <banDuplicatePomDependencyVersions />
+                                    <!-- enforces multi module build follows best practice -->
+                                    <!-- - checks versions within reactor are consistent -->
+                                    <!-- - checks every module contains a parent -->
+                                    <!-- - checks parent part of reactor build -->
+                                    <!-- - checks intermodule dependencies using same version -->
+                                    <reactorModuleConvergence>
+                                        <message>Multi module best practices have not been followed!</message>
+                                        <ignoreModuleDependencies>true</ignoreModuleDependencies>
+                                    </reactorModuleConvergence>
+                                    <!-- enforces JDK version -->
+                                    <requireJavaVersion>
+                                        <!-- enforce Java 11 or higher -->
+                                        <version>${maven.compiler.release}</version>
+                                    </requireJavaVersion>
+                                    <!-- enforces Maven version -->
+                                    <requireMavenVersion>
+                                        <!-- enforce Maven 3.6.3 or higher -->
+                                        <version>3.6.3</version>
+                                    </requireMavenVersion>
+                                    <!-- enforces plugins have specified version -->
+                                    <!-- Note: requires to explicitly set versions for the default maven plugins! -->
+                                    <requirePluginVersions>
+                                        <message>Some plugin(s) are missing a version number!</message>
+                                        <banLatest>true</banLatest>
+                                        <banRelease>true</banRelease>
+                                        <banSnapshots>true</banSnapshots>
+                                        <banTimestamps>true</banTimestamps>
+                                        <phases>clean,deploy,site</phases>
+                                    </requirePluginVersions>
+                                    <!-- enforces existence of profile(s) specified on commandline -->
+                                    <requireProfileIdsExist />
+                                    <!-- enforces existence & values of properties -->
+                                    <requireProperty>
+                                        <property>maven.compiler.release</property>
+                                        <message>Property 'maven.compiler.release' must be specified!</message>
+                                    </requireProperty>
+                                    <requireProperty>
+                                        <property>project.build.sourceEncoding</property>
+                                        <message>Property 'project.build.sourceEncoding' must be specified!</message>
+                                        <regex>UTF-8</regex>
+                                        <regexMessage>Property 'project.build.sourceEncoding' must be 'UTF-8'!</regexMessage>
+                                    </requireProperty>
+                                    <requireProperty>
+                                        <property>org.apache.maven.plugins.maven-compiler-plugin.version</property>
+                                        <message>Property 'org.apache.maven.plugins.maven-compiler-plugin.version' must be specified!</message>
+                                        <regex>^([3-9]\.[6-9]\.\d)|([4-9]\.\d\.\d)$</regex>
+                                        <regexMessage>Property 'org.apache.maven.plugins.maven-compiler-plugin.version' requires at least version '3.6.0' in combination with Java 9 or higher!</regexMessage>
+                                    </requireProperty>
+                                    <!-- enforce custom Serious Project rule -->
+                                    <!-- - checks group id (prefix) -->
+                                    <!-- - checks project name is set -->
+                                    <seriousProject implementation="be.seriousbusiness.SeriousProject">
+                                        <!-- Default group id prefix -->
+                                        <groupIdStartsWith>be.seriousbusiness</groupIdStartsWith>
+                                        <!-- Enforcing following group id prefix causes the build to fail -->
+                                        <!-- <groupIdStartsWith>nl.seriousbusiness</groupIdStartsWith> -->
+                                    </seriousProject>
+                                </rules>
+                            </configuration>
+                        </execution>
+                    </executions>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>${org.apache.maven.plugins.maven-compiler-plugin.version}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-surefire-plugin</artifactId>
+                    <version>${org.apache.maven.plugins.maven-surefire-plugin.version}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-jar-plugin</artifactId>
+                    <version>${org.apache.maven.plugins.maven-jar-plugin.version}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-clean-plugin</artifactId>
+                    <version>${org.apache.maven.plugins.maven-clean-plugin.version}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-install-plugin</artifactId>
+                    <version>${org.apache.maven.plugins.maven-install-plugin.version}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-site-plugin</artifactId>
+                    <version>${org.apache.maven.plugins.maven-site-plugin.version}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-resources-plugin</artifactId>
+                    <version>${org.apache.maven.plugins.maven-resources-plugin.version}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-deploy-plugin</artifactId>
+                    <version>${org.apache.maven.plugins.maven-deploy-plugin.version}</version>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
+</project>
