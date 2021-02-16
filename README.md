@@ -2,21 +2,31 @@
 
 🎉 Playground for testing and experimenting with various Maven plugins and configuration.
 
-## 🔌 Maven Plugins
+## Plugins
+
+### 🔌 Maven Plugins
+
 | Project                | Description                                                                                                            | Website                                                                                                        |
 | ---------------------- | ---------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- |
 | maven-resources-plugin | Handles copying of project resources to the output directory                                                           | [maven.apache.org/plugins/maven-resources-plugin](https://maven.apache.org/plugins/maven-resources-plugin)     |
 | maven-enforcer-plugin  | Require environmental contraints (Maven & Java version, properties, ...) to be fulfilled by configuring (custom) rules | [maven.apache.org/enforcer/maven-enforcer-plugin](https://maven.apache.org/enforcer/maven-enforcer-plugin)     |
 | maven-archetype-plugin | Archetype to generate a sample Maven plugin                                                                            | [maven.apache.org/archetype/maven-archetype-plugin](https://maven.apache.org/archetype/maven-archetype-plugin) |
 
-### maven-archetype-plugin
+#### maven-archetype-plugin
 
 Allows to create a Maven project from an existing template called an archetype.  
 And to create an archetype from an existing project.
 
 Website: [maven.apache.org/archetype/maven-archetype-plugin](https://maven.apache.org/archetype/maven-archetype-plugin)
 
-## 🔖 Maven Archetypes
+### 🔌 MojoHaus Plugins
+
+| Project               | Description                                     | Website                                                                              |
+| --------------------- | ----------------------------------------------- | ------------------------------------------------------------------------------------ |
+| versions-maven-plugin | Manage versions of artifacts in a project's POM | [mojohaus.org/versions-maven-plugin](https://www.mojohaus.org/versions-maven-plugin) |
+
+
+## 🔖 Archetypes
 
 Archetype is a Maven project templating toolkit.
 
