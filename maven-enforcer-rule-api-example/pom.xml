@@ -12,8 +12,6 @@
     <name>Maven Enforcer Rule API Example</name>
     
     <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.compiler.release>11</maven.compiler.release>
         <!-- dependencies -->
         <org.apache.maven.enforcer.enforcer-api.version>3.0.0-M3</org.apache.maven.enforcer.enforcer-api.version>
         <org.apache.maven.maven-project.version>2.2.1</org.apache.maven.maven-project.version>
@@ -21,8 +19,6 @@
         <org.apache.maven.maven-artifact.version>3.6.3</org.apache.maven.maven-artifact.version>
         <org.apache.maven.maven-plugin-api.version>3.6.3</org.apache.maven.maven-plugin-api.version>
         <org.codehaus.plexus.plexus-container-default.version>2.1.0</org.codehaus.plexus.plexus-container-default.version>
-        <!-- plugins -->
-        <org.apache.maven.plugins.maven-compiler-plugin.version>3.8.1</org.apache.maven.plugins.maven-compiler-plugin.version>
     </properties>
     
     <dependencies>
@@ -58,13 +54,4 @@
         </dependency>
     </dependencies>
     
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>${org.apache.maven.plugins.maven-compiler-plugin.version}</version>
-            </plugin>
-        </plugins>
-    </build>
 </project>

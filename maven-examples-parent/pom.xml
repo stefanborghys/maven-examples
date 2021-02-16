@@ -1,28 +1,110 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    
+
     <groupId>be.seriousbusiness.maven</groupId>
     <artifactId>maven-examples-parent</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
-    
+
     <name>Maven Examples Parent</name>
     <description>Provides default project configuration for 'maven examples'-projects.</description>
-    
+
     <properties>
         <!-- project -->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <!-- 'release' argument for the Java compiler -->
         <maven.compiler.release>11</maven.compiler.release>
+        <maven.version>3.6.3</maven.version>
         <!-- plugins -->
         <com.github.ekryd.sortpom.sortpom-maven-plugin.version>2.12.0</com.github.ekryd.sortpom.sortpom-maven-plugin.version>
+        <org.apache.maven.plugins.maven-clean-plugin.version>3.1.0</org.apache.maven.plugins.maven-clean-plugin.version>
+        <org.apache.maven.plugins.maven-compiler-plugin.version>3.8.1</org.apache.maven.plugins.maven-compiler-plugin.version>
+        <org.apache.maven.plugins.maven-enforcer-plugin.version>3.0.0-M3</org.apache.maven.plugins.maven-enforcer-plugin.version>
+        <org.apache.maven.plugins.maven-install-plugin.version>3.0.0-M1</org.apache.maven.plugins.maven-install-plugin.version>
+        <org.apache.maven.plugins.maven-site-plugin.version>3.9.1</org.apache.maven.plugins.maven-site-plugin.version>
+        <org.apache.maven.plugins.maven-deploy-plugin.version>3.0.0-M1</org.apache.maven.plugins.maven-deploy-plugin.version>
     </properties>
-    
+
     <build>
         <pluginManagement>
             <plugins>
+                <!-- cleans 'target' folder 📂 -->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-clean-plugin</artifactId>
+                    <version>${org.apache.maven.plugins.maven-clean-plugin.version}</version>
+                    <configuration>
+                        <!-- follow symbolic links while deleting files from default output directories -->
+                        <!-- Note: not following symlinks requires more IO operations & heap memory, regardless whether symlinks are present -->
+                        <followSymLinks>true</followSymLinks>
+                        <!-- runs in verbose mode -->
+                        <verbose>true</verbose>
+                    </configuration>
+                </plugin>
+                <!-- enforce project & environment configuration using rules -->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-enforcer-plugin</artifactId>
+                    <version>${org.apache.maven.plugins.maven-enforcer-plugin.version}</version>
+                    <executions>
+                        <execution>
+                            <id>enfore-rules</id>
+                            <goals>
+                                <goal>display-info</goal>
+                                <goal>enforce</goal>
+                            </goals>
+                            <phase>validate</phase>
+                            <configuration>
+                                <rules>
+                                    <requireJavaVersion>
+                                        <version>${maven.compiler.release}</version>
+                                    </requireJavaVersion>
+                                    <requireMavenVersion>
+                                        <version>${maven.version}</version>
+                                    </requireMavenVersion>
+                                    <requireProfileIdsExist />
+                                    <requireProperty>
+                                        <property>maven.compiler.release</property>
+                                        <message>Property 'maven.compiler.release' must be specified!</message>
+                                    </requireProperty>
+                                    <requireProperty>
+                                        <property>project.build.sourceEncoding</property>
+                                        <message>Property 'project.build.sourceEncoding' must be specified!</message>
+                                        <regex>UTF-8</regex>
+                                        <regexMessage>Property 'project.build.sourceEncoding' must be 'UTF-8'!</regexMessage>
+                                    </requireProperty>
+                                    <requireProperty>
+                                        <property>org.apache.maven.plugins.maven-compiler-plugin.version</property>
+                                        <message>Property 'org.apache.maven.plugins.maven-compiler-plugin.version' must be specified!</message>
+                                        <regex>^([3-9]\.[6-9]\.\d)|([4-9]\.\d\.\d)$</regex>
+                                        <regexMessage>Property 'org.apache.maven.plugins.maven-compiler-plugin.version' requires at least version
+                                            '3.6.0' in combination with Java 9 or higher!</regexMessage>
+                                    </requireProperty>
+                                </rules>
+                            </configuration>
+                        </execution>
+                    </executions>
+                </plugin>
+                <!-- main & test compilation configuration ⚙ -->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>${org.apache.maven.plugins.maven-compiler-plugin.version}</version>
+                    <configuration>
+                        <!-- debug level -->
+                        <debuglevel>lines,vars,source</debuglevel>
+                        <!-- show source locations where deprecated APIs are used -->
+                        <showDeprecation>true</showDeprecation>
+                        <!-- show compilation warnings -->
+                        <showWarnings>true</showWarnings>
+                        <!-- show messages about what the compiler is doing -->
+                        <verbose>false</verbose>
+                        <!-- run compiler in separate process -->
+                        <fork>false</fork>
+                    </configuration>
+                </plugin>
                 <!-- formats pom.xml files -->
                 <plugin>
                     <groupId>com.github.ekryd.sortpom</groupId>
@@ -51,24 +133,53 @@
                         </execution>
                     </executions>
                 </plugin>
+                <!-- install 💾 POM & JARs 📦 -->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-install-plugin</artifactId>
+                    <version>${org.apache.maven.plugins.maven-install-plugin.version}</version>
+                </plugin>
+                <!-- add artifact(s) to remote repository -->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-deploy-plugin</artifactId>
+                    <version>${org.apache.maven.plugins.maven-deploy-plugin.version}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-site-plugin</artifactId>
+                    <version>${org.apache.maven.plugins.maven-site-plugin.version}</version>
+                </plugin>
             </plugins>
         </pluginManagement>
         <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-clean-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-enforcer-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+            </plugin>
             <plugin>
                 <groupId>com.github.ekryd.sortpom</groupId>
                 <artifactId>sortpom-maven-plugin</artifactId>
             </plugin>
         </plugins>
     </build>
-    
+
     <url>http://www.seriousbusiness.be</url>
     <inceptionYear>2021</inceptionYear>
-    
+
     <organization>
         <name>Serious Business</name>
         <url>http://www.seriousbusiness.be</url>
     </organization>
-    
+
     <developers>
         <developer>
             <id>stefanborghys</id>
@@ -86,4 +197,28 @@
             </properties>
         </developer>
     </developers>
+
+    <profiles>
+        <profile>
+            <id>auto-clean</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-clean-plugin</artifactId>
+                        <version>${org.apache.maven.plugins.maven-clean-plugin.version}</version>
+                        <executions>
+                            <execution>
+                                <id>auto-clean</id>
+                                <goals>
+                                    <goal>clean</goal>
+                                </goals>
+                                <phase>validate</phase>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 </project>

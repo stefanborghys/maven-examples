@@ -12,10 +12,8 @@
     <name>Versions Maven Plugin Examples</name>
     
     <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.compiler.release>11</maven.compiler.release>
         <!-- plugins -->
-        <org.apache.maven.plugins.maven-compiler-plugin.version>3.8.1-jboss-2</org.apache.maven.plugins.maven-compiler-plugin.version>
+        <org.apache.maven.plugins.maven-compiler-plugin.version>3.6.0</org.apache.maven.plugins.maven-compiler-plugin.version>
         <org.codehaus.mojo.versions-maven-plugin.version>2.8.1</org.codehaus.mojo.versions-maven-plugin.version>
         <org.apache.maven.plugins.maven-site-plugin.version>3.9.1</org.apache.maven.plugins.maven-site-plugin.version>
     </properties>
