@@ -6,7 +6,6 @@
         <artifactId>maven-examples-parent</artifactId>
         <version>1.0-SNAPSHOT</version>
     </parent>
-    <groupId>be.seriousbusiness.maven-enforcer-rule-api-example</groupId>
     <artifactId>maven-enforcer-rule-api-example</artifactId>
     <version>1.0-SNAPSHOT</version>
     <name>Maven Enforcer Rule API Example</name>
