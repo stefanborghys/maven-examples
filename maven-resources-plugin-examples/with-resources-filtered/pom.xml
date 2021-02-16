@@ -1,18 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <artifactId>maven-resources-plugin-examples</artifactId>
         <groupId>be.seriousbusiness.maven-resources-plugin-examples</groupId>
+        <artifactId>maven-resources-plugin-examples</artifactId>
         <version>1.0-SNAPSHOT</version>
     </parent>
-
+    
     <artifactId>with-resources-filtered</artifactId>
-
+    
     <name>With Resources Filtered</name>
-
+    
     <build>
         <filters>
             <filter>src/main/resources/filter-values.properties</filter>
@@ -22,8 +20,8 @@
                 <directory>src/main/resources</directory>
             </resource>
             <resource>
-                <directory>src/main/resources-filtered</directory>
                 <filtering>true</filtering>
+                <directory>src/main/resources-filtered</directory>
             </resource>
         </resources>
         <testResources>
@@ -31,10 +29,10 @@
                 <directory>src/test/resources</directory>
             </testResource>
             <testResource>
-                <directory>src/test/resources-filtered</directory>
                 <filtering>true</filtering>
+                <directory>src/test/resources-filtered</directory>
             </testResource>
         </testResources>
     </build>
-
+    
 </project>
