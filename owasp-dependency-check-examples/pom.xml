@@ -88,15 +88,12 @@
                     <configuration>
                         <!-- auto-updating NVD CVE/CPE data enabled? -->
                         <autoUpdate>true</autoUpdate>
-                        
                         <!-- report formats to generate (HTML, XML, CSV, JSON, JUNIT, ALL) -->
                         <formats>ALL</formats>
                         <!-- pretty print XML, JSON reports -->
                         <prettyPrint>true</prettyPrint>
-                        
                         <!-- skip analysis of dependencyManagement section -->
                         <skipDependencyManagement>true</skipDependencyManagement>
-                        
                         <!-- XML suppression files, used to suppress false positives. -->
                         <!-- Value can be: -->
                         <!-- - local file path -->
@@ -106,10 +103,8 @@
                             <!-- - URL -->
                             <suppressionFile>https://stefanborghys.github.io/owasp-dependency-check-examples/dependency-check-suppressions.xml</suppressionFile>
                         </suppressionFiles>
-                        
                         <!-- check if new version of dependency-check-maven exists -->
                         <versionCheckEnabled>true</versionCheckEnabled>
-                        
                         <!-- Analyzer Configuration -->
                         <!-- use experimental Python Distribution Analyzer? -->
                         <pyDistributionAnalyzerEnabled>false</pyDistributionAnalyzerEnabled>

@@ -6,10 +6,10 @@
         <artifactId>owasp-dependency-check-examples</artifactId>
         <version>1.0-SNAPSHOT</version>
     </parent>
-
+    
     <artifactId>suppressed-vulnerabilities</artifactId>
     <name>OWASP Dependency Check | Suppressed Vulnerabilities</name>
-
+    
     <dependencies>
         <dependency>
             <!-- suppressed by dependency-check-suppressions.xml configured in this pom -->
@@ -27,7 +27,7 @@
             <artifactId>pdfbox</artifactId>
         </dependency>
     </dependencies>
-
+    
     <build>
         <plugins>
             <plugin>
@@ -48,5 +48,5 @@
             </plugin>
         </plugins>
     </build>
-
+    
 </project>
