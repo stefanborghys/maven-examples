@@ -26,3 +26,5 @@ jobs:
       run: mvn install --file maven-enforcer-rule-api-example/pom.xml
     - name: Build 'maven-enforcer-plugin-examples' with Maven
       run: mvn install --file maven-enforcer-plugin-examples/pom.xml
+    - name: Build 'maven-resources-plugin-examples' with Maven
+      run: mvn install --file maven-resources-plugin-examples/pom.xml
