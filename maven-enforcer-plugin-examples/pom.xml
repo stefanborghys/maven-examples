@@ -18,7 +18,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.release>11</maven.compiler.release>
         <!-- dependencies -->
-        <be.seriousbusiness.maven-enforcer-rule-api-example.version>1.0-SNAPSHOT</be.seriousbusiness.maven-enforcer-rule-api-example.version>
+        <be.seriousbusiness.maven.maven-enforcer-rule-api-example.version>1.0-SNAPSHOT</be.seriousbusiness.maven.maven-enforcer-rule-api-example.version>
         <!-- plugins -->
         <org.apache.maven.plugins.maven-enforcer-plugin.version>3.0.0-M3</org.apache.maven.plugins.maven-enforcer-plugin.version>
         <org.apache.maven.plugins.maven-compiler-plugin.version>3.8.1</org.apache.maven.plugins.maven-compiler-plugin.version>
@@ -41,9 +41,9 @@
                     <version>${org.apache.maven.plugins.maven-enforcer-plugin.version}</version>
                     <dependencies>
                         <dependency>
-                            <groupId>be.seriousbusiness.maven-enforcer-rule-api-example</groupId>
+                            <groupId>be.seriousbusiness.maven</groupId>
                             <artifactId>maven-enforcer-rule-api-example</artifactId>
-                            <version>${be.seriousbusiness.maven-enforcer-rule-api-example.version}</version>
+                            <version>${be.seriousbusiness.maven.maven-enforcer-rule-api-example.version}</version>
                         </dependency>
                     </dependencies>
                     <executions>
