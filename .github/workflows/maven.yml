@@ -28,3 +28,7 @@ jobs:
       run: mvn install --file maven-enforcer-plugin-examples/pom.xml
     - name: Build 'maven-resources-plugin-examples' with Maven
       run: mvn install --file maven-resources-plugin-examples/pom.xml
+    - name: Build 'owasp-dependency-check-examples' with Maven
+      run: mvn install --file owasp-dependency-check-examples/pom.xml
+    - name: Build 'versions-maven-plugin-examples' with Maven
+      run: mvn install --file versions-maven-plugin-examples/pom.xml
