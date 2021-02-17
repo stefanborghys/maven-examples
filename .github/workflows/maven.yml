@@ -21,4 +21,4 @@ jobs:
       with:
         java-version: 11
     - name: Build 'maven-enforcer-plugin-examples' with Maven
-      run: mvn install --file /maven-enforcer-plugin-examples/pom.xml
+      run: mvn install --file maven-enforcer-plugin-examples/pom.xml
