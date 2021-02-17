@@ -21,10 +21,15 @@ Website: [maven.apache.org/archetype/maven-archetype-plugin](https://maven.apach
 
 ### 🔌 MojoHaus Plugins
 
-| Project               | Description                                     | Website                                                                              |
-| --------------------- | ----------------------------------------------- | ------------------------------------------------------------------------------------ |
-| versions-maven-plugin | Manage versions of artifacts in a project's POM | [mojohaus.org/versions-maven-plugin](https://www.mojohaus.org/versions-maven-plugin) |
+| Project                | Description                                        | Website                                                                              |
+| ---------------------- | -------------------------------------------------- | ------------------------------------------------------------------------------------ |
+| versions-maven-plugin  | Manage versions of artifacts in a project's POM    | [mojohaus.org/versions-maven-plugin](https://www.mojohaus.org/versions-maven-plugin) |
 
+### 🔌 Other Plugins
+
+| Project                | Description                                        | Website                                                                                |
+| ---------------------- | -------------------------------------------------- | -------------------------------------------------------------------------------------- |
+| dependency-check-maven | Detect vulnerabilities within project dependencies | [github.com/jeremylong/DependencyCheck](https://github.com/jeremylong/DependencyCheck) |
 
 ## 🔖 Archetypes
 

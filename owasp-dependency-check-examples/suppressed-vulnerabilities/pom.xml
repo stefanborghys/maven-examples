@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>be.seriousbusiness.maven</groupId>
+        <artifactId>owasp-dependency-check-examples</artifactId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>suppressed-vulnerabilities</artifactId>
+    <name>OWASP Dependency Check | Suppressed Vulnerabilities</name>
+
+    <dependencies>
+        <dependency>
+            <!-- suppressed by dependency-check-suppressions.xml configured in this pom -->
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-collections4</artifactId>
+        </dependency>
+        <dependency>
+            <!-- suppressed by dependency-check/suppressions/dependency-check-suppressions.xml configured in this pom -->
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-core</artifactId>
+        </dependency>
+        <dependency>
+            <!-- suppressed by url configured in this pom -->
+            <groupId>org.apache.pdfbox</groupId>
+            <artifactId>pdfbox</artifactId>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.owasp</groupId>
+                <artifactId>dependency-check-maven</artifactId>
+                <version>${org.owasp.dependency-check-maven.version}</version>
+                <configuration>
+                    <!-- override parent pom suppressionFiles configuration -->
+                    <suppressionFiles>
+                        <!-- - local file path -->
+                        <suppressionFile>${project.parent.basedir}/dependency-check/suppressions/dependency-check-suppressions.xml</suppressionFile>
+                        <!-- - reference to file on class path -->
+                        <suppressionFile>dependency-check-suppressions.xml</suppressionFile>
+                        <!-- - URL -->
+                        <suppressionFile>https://stefanborghys.github.io/owasp-dependency-check-examples/dependency-check-suppressions.xml</suppressionFile>
+                    </suppressionFiles>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>

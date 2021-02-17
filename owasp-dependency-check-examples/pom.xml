@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>be.seriousbusiness.maven</groupId>
+        <artifactId>maven-examples-parent</artifactId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+    <artifactId>owasp-dependency-check-examples</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
+    
+    <name>OWASP Dependency Check Examples</name>
+    <modules>
+        <module>no-vulnerabilities</module>
+        <module>low-vulnerabilities</module>
+        <module>medium-vulnerabilities</module>
+        <module>high-vulnerabilities</module>
+        <module>suppressed-vulnerabilities</module>
+        <module>critical-vulnerabilities</module>
+    </modules>
+    
+    <properties>
+        <!-- no -->
+        <org.apache.commons.artifactId.commons-configuration2.version>2.7</org.apache.commons.artifactId.commons-configuration2.version>
+        <!-- high -->
+        <org.apache.poi.poi.version>3.15</org.apache.poi.poi.version>
+        <!-- medium -->
+        <org.apache.httpcomponents.httpclient.version>4.0</org.apache.httpcomponents.httpclient.version>
+        <org.apache.pdfbox.pdfbox.version>2.0.10</org.apache.pdfbox.pdfbox.version>
+        <!-- critical -->
+        <org.apache.tomcat.embed.tomcat-embed-core.version>7.0.0</org.apache.tomcat.embed.tomcat-embed-core.version>
+        <!-- suppressed -->
+        <org.apache.commons.commons-collections4.version>4.0</org.apache.commons.commons-collections4.version>
+        <org.apache.logging.log4j.log4j-core.version>2.6</org.apache.logging.log4j.log4j-core.version>
+        <!-- plugins -->
+        <org.owasp.dependency-check-maven.version>6.0.3</org.owasp.dependency-check-maven.version>
+        <org.apache.maven.plugins.maven-site-plugin.version>3.9.1</org.apache.maven.plugins.maven-site-plugin.version>
+    </properties>
+    
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-configuration2</artifactId>
+                <version>${org.apache.commons.artifactId.commons-configuration2.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.httpcomponents</groupId>
+                <artifactId>httpclient</artifactId>
+                <version>${org.apache.httpcomponents.httpclient.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.poi</groupId>
+                <artifactId>poi</artifactId>
+                <version>${org.apache.poi.poi.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.tomcat.embed</groupId>
+                <artifactId>tomcat-embed-core</artifactId>
+                <version>${org.apache.tomcat.embed.tomcat-embed-core.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-collections4</artifactId>
+                <version>${org.apache.commons.commons-collections4.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.logging.log4j</groupId>
+                <artifactId>log4j-core</artifactId>
+                <version>${org.apache.logging.log4j.log4j-core.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.pdfbox</groupId>
+                <artifactId>pdfbox</artifactId>
+                <version>${org.apache.pdfbox.pdfbox.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+    
+    <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.owasp</groupId>
+                    <artifactId>dependency-check-maven</artifactId>
+                    <version>${org.owasp.dependency-check-maven.version}</version>
+                    <configuration>
+                        <!-- auto-updating NVD CVE/CPE data enabled? -->
+                        <autoUpdate>true</autoUpdate>
+                        
+                        <!-- report formats to generate (HTML, XML, CSV, JSON, JUNIT, ALL) -->
+                        <formats>ALL</formats>
+                        <!-- pretty print XML, JSON reports -->
+                        <prettyPrint>true</prettyPrint>
+                        
+                        <!-- skip analysis of dependencyManagement section -->
+                        <skipDependencyManagement>true</skipDependencyManagement>
+                        
+                        <!-- XML suppression files, used to suppress false positives. -->
+                        <!-- Value can be: -->
+                        <!-- - local file path -->
+                        <suppressionFiles>
+                            <!-- - reference to file on class path -->
+                            <suppressionFile>dependency-check-suppressions.xml</suppressionFile>
+                            <!-- - URL -->
+                            <suppressionFile>https://stefanborghys.github.io/owasp-dependency-check-examples/dependency-check-suppressions.xml</suppressionFile>
+                        </suppressionFiles>
+                        
+                        <!-- check if new version of dependency-check-maven exists -->
+                        <versionCheckEnabled>true</versionCheckEnabled>
+                        
+                        <!-- Analyzer Configuration -->
+                        <!-- use experimental Python Distribution Analyzer? -->
+                        <pyDistributionAnalyzerEnabled>false</pyDistributionAnalyzerEnabled>
+                        <!-- use experimental Python Package Analyzer? -->
+                        <pyPackageAnalyzerEnabled>false</pyPackageAnalyzerEnabled>
+                        <!-- use experimental Ruby Gemspec Analyzer? -->
+                        <rubygemsAnalyzerEnabled>false</rubygemsAnalyzerEnabled>
+                        <!-- use experimental pip Analyzer? -->
+                        <pipAnalyzerEnabled>false</pipAnalyzerEnabled>
+                        <!-- use experimental Pipfile Analyzer? -->
+                        <pipfileAnalyzerEnabled>false</pipfileAnalyzerEnabled>
+                        <!-- use experimental PHP Composer Lock File Analyzer? -->
+                        <composerAnalyzerEnabled>false</composerAnalyzerEnabled>
+                        <!-- use .NET Nuget Nuspec Analyzer? -->
+                        <nuspecAnalyzerEnabled>false</nuspecAnalyzerEnabled>
+                        <!-- use experimental .NET Nuget packages.config Analyzer? -->
+                        <nugetconfAnalyzerEnabled>false</nugetconfAnalyzerEnabled>
+                        <!-- use experimental Cocoapods Analyzer? -->
+                        <cocoapodsAnalyzerEnabled>false</cocoapodsAnalyzerEnabled>
+                        <!-- use experimental Swift Package Analyzer? -->
+                        <swiftPackageManagerAnalyzerEnabled>false</swiftPackageManagerAnalyzerEnabled>
+                        <!-- use NET Assembly Analyzer? -->
+                        <assemblyAnalyzerEnabled>false</assemblyAnalyzerEnabled>
+                        <!-- use experimental Golang Dependency Analyzer? -->
+                        <golangDepEnabled>false</golangDepEnabled>
+                        <!-- use experimental Goland Module Analyzer? -->
+                        <golangModEnabled>false</golangModEnabled>
+                    </configuration>
+                    <executions>
+                        <execution>
+                            <goals>
+                                <goal>check</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-site-plugin</artifactId>
+                    <version>${org.apache.maven.plugins.maven-site-plugin.version}</version>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+        <plugins>
+            <plugin>
+                <groupId>org.owasp</groupId>
+                <artifactId>dependency-check-maven</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-site-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+    
+    <reporting>
+        <plugins>
+            <plugin>
+                <groupId>org.owasp</groupId>
+                <artifactId>dependency-check-maven</artifactId>
+                <version>${org.owasp.dependency-check-maven.version}</version>
+            </plugin>
+        </plugins>
+    </reporting>
+    
+</project>
