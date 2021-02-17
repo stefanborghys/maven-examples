@@ -6,11 +6,11 @@
         <artifactId>maven-resources-plugin-examples</artifactId>
         <version>1.0-SNAPSHOT</version>
     </parent>
-    
+
     <artifactId>with-resources-filtered</artifactId>
-    
-    <name>With Resources Filtered</name>
-    
+
+    <name>Maven Resources Plugin | With Resources Filtered</name>
+
     <build>
         <filters>
             <filter>src/main/resources/filter-values.properties</filter>
@@ -34,5 +34,5 @@
             </testResource>
         </testResources>
     </build>
-    
+
 </project>

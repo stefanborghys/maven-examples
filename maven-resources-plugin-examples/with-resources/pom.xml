@@ -6,8 +6,8 @@
         <artifactId>maven-resources-plugin-examples</artifactId>
         <version>1.0-SNAPSHOT</version>
     </parent>
-    
+
     <artifactId>with-resources</artifactId>
-    <name>With Resources</name>
-    
+    <name>Maven Resources Plugin | With Resources</name>
+
 </project>
