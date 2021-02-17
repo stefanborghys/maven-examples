@@ -101,7 +101,7 @@
                             <!-- - reference to file on class path -->
                             <suppressionFile>dependency-check-suppressions.xml</suppressionFile>
                             <!-- - URL -->
-                            <suppressionFile>https://stefanborghys.github.io/owasp-dependency-check-examples/dependency-check-suppressions.xml</suppressionFile>
+                            <suppressionFile>https://stefanborghys.github.io/maven-examples/owasp-dependency-check/suppressions/dependency-check-suppressions.xml</suppressionFile>
                         </suppressionFiles>
                         <!-- check if new version of dependency-check-maven exists -->
                         <versionCheckEnabled>true</versionCheckEnabled>
