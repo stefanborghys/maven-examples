@@ -40,7 +40,7 @@
                         <!-- - local file path -->
                         <suppressionFile>${project.parent.basedir}/dependency-check/suppressions/dependency-check-suppressions.xml</suppressionFile>
                         <!-- - reference to file on class path -->
-                        <suppressionFile>dependency-check-suppressions.xml</suppressionFile>
+                        <suppressionFile>${project.parent.basedir}/root-dependency-check-suppressions.xml</suppressionFile>
                         <!-- - URL -->
                         <suppressionFile>https://stefanborghys.github.io/maven-examples/owasp-dependency-check/suppressions/dependency-check-suppressions.xml</suppressionFile>
                     </suppressionFiles>
