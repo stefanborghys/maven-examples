@@ -99,7 +99,7 @@
                         <!-- - local file path -->
                         <suppressionFiles>
                             <!-- - reference to file on class path -->
-                            <suppressionFile>dependency-check-suppressions.xml</suppressionFile>
+                            <suppressionFile>root-dependency-check-suppressions.xml</suppressionFile>
                             <!-- - URL -->
                             <suppressionFile>https://stefanborghys.github.io/maven-examples/owasp-dependency-check/suppressions/dependency-check-suppressions.xml</suppressionFile>
                         </suppressionFiles>
