@@ -34,7 +34,7 @@
         <org.apache.commons.commons-collections4.version>4.0</org.apache.commons.commons-collections4.version>
         <org.apache.logging.log4j.log4j-core.version>2.6</org.apache.logging.log4j.log4j-core.version>
         <!-- plugins -->
-        <org.owasp.dependency-check-maven.version>6.0.5</org.owasp.dependency-check-maven.version>
+        <org.owasp.dependency-check-maven.version>6.1.2</org.owasp.dependency-check-maven.version>
         <org.apache.maven.plugins.maven-site-plugin.version>3.9.1</org.apache.maven.plugins.maven-site-plugin.version>
     </properties>
     
